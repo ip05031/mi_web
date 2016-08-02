@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRevistaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_idRevista}" for="idRevista" />
+                    <h:inputText id="idRevista" value="#{revistaController.selected.idRevista}" title="#{bundle.CreateRevistaTitle_idRevista}" required="true" requiredMessage="#{bundle.CreateRevistaRequiredMessage_idRevista}"/>
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_titulor}" for="titulor" />
+                    <h:inputText id="titulor" value="#{revistaController.selected.titulor}" title="#{bundle.CreateRevistaTitle_titulor}" />
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_fechapr}" for="fechapr" />
+                    <h:inputText id="fechapr" value="#{revistaController.selected.fechapr}" title="#{bundle.CreateRevistaTitle_fechapr}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_issn}" for="issn" />
+                    <h:inputText id="issn" value="#{revistaController.selected.issn}" title="#{bundle.CreateRevistaTitle_issn}" />
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_imagenpr}" for="imagenpr" />
+                    <h:inputText id="imagenpr" value="#{revistaController.selected.imagenpr}" title="#{bundle.CreateRevistaTitle_imagenpr}" />
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_archivopr}" for="archivopr" />
+                    <h:inputText id="archivopr" value="#{revistaController.selected.archivopr}" title="#{bundle.CreateRevistaTitle_archivopr}" />
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_descripcionr}" for="descripcionr" />
+                    <h:inputText id="descripcionr" value="#{revistaController.selected.descripcionr}" title="#{bundle.CreateRevistaTitle_descripcionr}" />
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_fechaingresor}" for="fechaingresor" />
+                    <h:inputText id="fechaingresor" value="#{revistaController.selected.fechaingresor}" title="#{bundle.CreateRevistaTitle_fechaingresor}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_paisr}" for="paisr" />
+                    <h:inputText id="paisr" value="#{revistaController.selected.paisr}" title="#{bundle.CreateRevistaTitle_paisr}" />
+                    <h:outputLabel value="#{bundle.CreateRevistaLabel_idDonacion}" for="idDonacion" />
+                    <h:selectOneMenu id="idDonacion" value="#{revistaController.selected.idDonacion}" title="#{bundle.CreateRevistaTitle_idDonacion}" >
+                        <f:selectItems value="#{donacionesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{revistaController.create}" value="#{bundle.CreateRevistaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{revistaController.prepareList}" value="#{bundle.CreateRevistaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRevistaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

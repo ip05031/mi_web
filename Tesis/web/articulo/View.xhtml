@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewArticuloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewArticuloLabel_idArticulo}"/>
+                    <h:outputText value="#{articuloController.selected.idArticulo}" title="#{bundle.ViewArticuloTitle_idArticulo}"/>
+                    <h:outputText value="#{bundle.ViewArticuloLabel_tituloa}"/>
+                    <h:outputText value="#{articuloController.selected.tituloa}" title="#{bundle.ViewArticuloTitle_tituloa}"/>
+                    <h:outputText value="#{bundle.ViewArticuloLabel_autora}"/>
+                    <h:outputText value="#{articuloController.selected.autora}" title="#{bundle.ViewArticuloTitle_autora}"/>
+                    <h:outputText value="#{bundle.ViewArticuloLabel_resumena}"/>
+                    <h:outputText value="#{articuloController.selected.resumena}" title="#{bundle.ViewArticuloTitle_resumena}"/>
+                    <h:outputText value="#{bundle.ViewArticuloLabel_archivoa}"/>
+                    <h:outputText value="#{articuloController.selected.archivoa}" title="#{bundle.ViewArticuloTitle_archivoa}"/>
+                    <h:outputText value="#{bundle.ViewArticuloLabel_idRevista}"/>
+                    <h:outputText value="#{articuloController.selected.idRevista}" title="#{bundle.ViewArticuloTitle_idRevista}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{articuloController.destroyAndView}" value="#{bundle.ViewArticuloDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewArticuloEditLink}"/>
+                <br />
+                <h:commandLink action="#{articuloController.prepareCreate}" value="#{bundle.ViewArticuloCreateLink}" />
+                <br />
+                <h:commandLink action="#{articuloController.prepareList}" value="#{bundle.ViewArticuloShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewArticuloIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

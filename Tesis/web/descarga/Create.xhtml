@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDescargaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDescargaLabel_idDescarga}" for="idDescarga" />
+                    <h:inputText id="idDescarga" value="#{descargaController.selected.idDescarga}" title="#{bundle.CreateDescargaTitle_idDescarga}" required="true" requiredMessage="#{bundle.CreateDescargaRequiredMessage_idDescarga}"/>
+                    <h:outputLabel value="#{bundle.CreateDescargaLabel_fechad}" for="fechad" />
+                    <h:inputText id="fechad" value="#{descargaController.selected.fechad}" title="#{bundle.CreateDescargaTitle_fechad}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDescargaLabel_horad}" for="horad" />
+                    <h:inputText id="horad" value="#{descargaController.selected.horad}" title="#{bundle.CreateDescargaTitle_horad}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDescargaLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{descargaController.selected.idUsuario}" title="#{bundle.CreateDescargaTitle_idUsuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDescargaLabel_idRevista}" for="idRevista" />
+                    <h:selectOneMenu id="idRevista" value="#{descargaController.selected.idRevista}" title="#{bundle.CreateDescargaTitle_idRevista}" required="true" requiredMessage="#{bundle.CreateDescargaRequiredMessage_idRevista}">
+                        <f:selectItems value="#{revistaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDescargaLabel_idArticulo}" for="idArticulo" />
+                    <h:selectOneMenu id="idArticulo" value="#{descargaController.selected.idArticulo}" title="#{bundle.CreateDescargaTitle_idArticulo}" required="true" requiredMessage="#{bundle.CreateDescargaRequiredMessage_idArticulo}">
+                        <f:selectItems value="#{articuloController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{descargaController.create}" value="#{bundle.CreateDescargaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{descargaController.prepareList}" value="#{bundle.CreateDescargaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDescargaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

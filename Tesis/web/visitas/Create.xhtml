@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateVisitasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateVisitasLabel_fechav}" for="fechav" />
+                    <h:inputText id="fechav" value="#{visitasController.selected.fechav}" title="#{bundle.CreateVisitasTitle_fechav}" required="true" requiredMessage="#{bundle.CreateVisitasRequiredMessage_fechav}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateVisitasLabel_cantidadv}" for="cantidadv" />
+                    <h:inputText id="cantidadv" value="#{visitasController.selected.cantidadv}" title="#{bundle.CreateVisitasTitle_cantidadv}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{visitasController.create}" value="#{bundle.CreateVisitasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{visitasController.prepareList}" value="#{bundle.CreateVisitasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateVisitasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPalabraClaveTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPalabraClaveEmpty}" rendered="#{palabraClaveController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{palabraClaveController.items.rowCount > 0}">
+                    <h:outputText value="#{palabraClaveController.pagination.pageFirstItem + 1}..#{palabraClaveController.pagination.pageLastItem + 1}/#{palabraClaveController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{palabraClaveController.previous}" value="#{bundle.Previous} #{palabraClaveController.pagination.pageSize}" rendered="#{palabraClaveController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{palabraClaveController.next}" value="#{bundle.Next} #{palabraClaveController.pagination.pageSize}" rendered="#{palabraClaveController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{palabraClaveController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPalabraClaveTitle_idPalabra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPalabra}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPalabraClaveTitle_nombrep}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombrep}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{palabraClaveController.prepareView}" value="#{bundle.ListPalabraClaveViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{palabraClaveController.prepareEdit}" value="#{bundle.ListPalabraClaveEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{palabraClaveController.destroy}" value="#{bundle.ListPalabraClaveDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{palabraClaveController.prepareCreate}" value="#{bundle.ListPalabraClaveCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPalabraClaveIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDonateTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDonateEmpty}" rendered="#{donateController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{donateController.items.rowCount > 0}">
+                    <h:outputText value="#{donateController.pagination.pageFirstItem + 1}..#{donateController.pagination.pageLastItem + 1}/#{donateController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{donateController.previous}" value="#{bundle.Previous} #{donateController.pagination.pageSize}" rendered="#{donateController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{donateController.next}" value="#{bundle.Next} #{donateController.pagination.pageSize}" rendered="#{donateController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{donateController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDonateTitle_idDonante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDonante}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDonateTitle_nombred}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombred}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDonateTitle_direccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDonateTitle_telefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDonateTitle_correodonate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.correodonate}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{donateController.prepareView}" value="#{bundle.ListDonateViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{donateController.prepareEdit}" value="#{bundle.ListDonateEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{donateController.destroy}" value="#{bundle.ListDonateDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{donateController.prepareCreate}" value="#{bundle.ListDonateCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDonateIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

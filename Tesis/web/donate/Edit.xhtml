@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDonateTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDonateLabel_idDonante}" for="idDonante" />
+                    <h:inputText id="idDonante" value="#{donateController.selected.idDonante}" title="#{bundle.EditDonateTitle_idDonante}" required="true" requiredMessage="#{bundle.EditDonateRequiredMessage_idDonante}"/>
+                    <h:outputLabel value="#{bundle.EditDonateLabel_nombred}" for="nombred" />
+                    <h:inputText id="nombred" value="#{donateController.selected.nombred}" title="#{bundle.EditDonateTitle_nombred}" />
+                    <h:outputLabel value="#{bundle.EditDonateLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{donateController.selected.direccion}" title="#{bundle.EditDonateTitle_direccion}" />
+                    <h:outputLabel value="#{bundle.EditDonateLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{donateController.selected.telefono}" title="#{bundle.EditDonateTitle_telefono}" />
+                    <h:outputLabel value="#{bundle.EditDonateLabel_correodonate}" for="correodonate" />
+                    <h:inputText id="correodonate" value="#{donateController.selected.correodonate}" title="#{bundle.EditDonateTitle_correodonate}" />
+                </h:panelGrid>
+                <h:commandLink action="#{donateController.update}" value="#{bundle.EditDonateSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDonateViewLink}"/>
+                <br />
+                <h:commandLink action="#{donateController.prepareList}" value="#{bundle.EditDonateShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDonateIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

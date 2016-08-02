@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_idUsuario}"/>
+                    <h:outputText value="#{usuarioController.selected.idUsuario}" title="#{bundle.ViewUsuarioTitle_idUsuario}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_nombreu}"/>
+                    <h:outputText value="#{usuarioController.selected.nombreu}" title="#{bundle.ViewUsuarioTitle_nombreu}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_apellidosu}"/>
+                    <h:outputText value="#{usuarioController.selected.apellidosu}" title="#{bundle.ViewUsuarioTitle_apellidosu}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_ocupacion}"/>
+                    <h:outputText value="#{usuarioController.selected.ocupacion}" title="#{bundle.ViewUsuarioTitle_ocupacion}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_fechanacimientou}"/>
+                    <h:outputText value="#{usuarioController.selected.fechanacimientou}" title="#{bundle.ViewUsuarioTitle_fechanacimientou}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_correou}"/>
+                    <h:outputText value="#{usuarioController.selected.correou}" title="#{bundle.ViewUsuarioTitle_correou}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_nickname}"/>
+                    <h:outputText value="#{usuarioController.selected.nickname}" title="#{bundle.ViewUsuarioTitle_nickname}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_password}"/>
+                    <h:outputText value="#{usuarioController.selected.password}" title="#{bundle.ViewUsuarioTitle_password}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_estadoi}"/>
+                    <h:outputText value="#{usuarioController.selected.estadoi}" title="#{bundle.ViewUsuarioTitle_estadoi}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_fechau}"/>
+                    <h:outputText value="#{usuarioController.selected.fechau}" title="#{bundle.ViewUsuarioTitle_fechau}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_paisu}"/>
+                    <h:outputText value="#{usuarioController.selected.paisu}" title="#{bundle.ViewUsuarioTitle_paisu}"/>
+                    <h:outputText value="#{bundle.ViewUsuarioLabel_idTusuario}"/>
+                    <h:outputText value="#{usuarioController.selected.idTusuario}" title="#{bundle.ViewUsuarioTitle_idTusuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuarioController.destroyAndView}" value="#{bundle.ViewUsuarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUsuarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{usuarioController.prepareCreate}" value="#{bundle.ViewUsuarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.ViewUsuarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUsuarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

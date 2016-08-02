@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateArticuloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateArticuloLabel_idArticulo}" for="idArticulo" />
+                    <h:inputText id="idArticulo" value="#{articuloController.selected.idArticulo}" title="#{bundle.CreateArticuloTitle_idArticulo}" required="true" requiredMessage="#{bundle.CreateArticuloRequiredMessage_idArticulo}"/>
+                    <h:outputLabel value="#{bundle.CreateArticuloLabel_tituloa}" for="tituloa" />
+                    <h:inputText id="tituloa" value="#{articuloController.selected.tituloa}" title="#{bundle.CreateArticuloTitle_tituloa}" />
+                    <h:outputLabel value="#{bundle.CreateArticuloLabel_autora}" for="autora" />
+                    <h:inputText id="autora" value="#{articuloController.selected.autora}" title="#{bundle.CreateArticuloTitle_autora}" />
+                    <h:outputLabel value="#{bundle.CreateArticuloLabel_resumena}" for="resumena" />
+                    <h:inputText id="resumena" value="#{articuloController.selected.resumena}" title="#{bundle.CreateArticuloTitle_resumena}" />
+                    <h:outputLabel value="#{bundle.CreateArticuloLabel_archivoa}" for="archivoa" />
+                    <h:inputText id="archivoa" value="#{articuloController.selected.archivoa}" title="#{bundle.CreateArticuloTitle_archivoa}" />
+                    <h:outputLabel value="#{bundle.CreateArticuloLabel_idRevista}" for="idRevista" />
+                    <h:selectOneMenu id="idRevista" value="#{articuloController.selected.idRevista}" title="#{bundle.CreateArticuloTitle_idRevista}" >
+                        <f:selectItems value="#{revistaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{articuloController.create}" value="#{bundle.CreateArticuloSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{articuloController.prepareList}" value="#{bundle.CreateArticuloShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateArticuloIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

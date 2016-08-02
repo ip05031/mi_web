@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEventoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEventoLabel_idEvento}" for="idEvento" />
+                    <h:inputText id="idEvento" value="#{eventoController.selected.idEvento}" title="#{bundle.EditEventoTitle_idEvento}" required="true" requiredMessage="#{bundle.EditEventoRequiredMessage_idEvento}"/>
+                    <h:outputLabel value="#{bundle.EditEventoLabel_fechae}" for="fechae" />
+                    <h:inputText id="fechae" value="#{eventoController.selected.fechae}" title="#{bundle.EditEventoTitle_fechae}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEventoLabel_horae}" for="horae" />
+                    <h:inputText id="horae" value="#{eventoController.selected.horae}" title="#{bundle.EditEventoTitle_horae}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEventoLabel_lugare}" for="lugare" />
+                    <h:inputText id="lugare" value="#{eventoController.selected.lugare}" title="#{bundle.EditEventoTitle_lugare}" />
+                    <h:outputLabel value="#{bundle.EditEventoLabel_imagene}" for="imagene" />
+                    <h:inputText id="imagene" value="#{eventoController.selected.imagene}" title="#{bundle.EditEventoTitle_imagene}" />
+                    <h:outputLabel value="#{bundle.EditEventoLabel_nombree}" for="nombree" />
+                    <h:inputText id="nombree" value="#{eventoController.selected.nombree}" title="#{bundle.EditEventoTitle_nombree}" />
+                    <h:outputLabel value="#{bundle.EditEventoLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{eventoController.selected.idUsuario}" title="#{bundle.EditEventoTitle_idUsuario}" required="true" requiredMessage="#{bundle.EditEventoRequiredMessage_idUsuario}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{eventoController.update}" value="#{bundle.EditEventoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEventoViewLink}"/>
+                <br />
+                <h:commandLink action="#{eventoController.prepareList}" value="#{bundle.EditEventoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEventoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

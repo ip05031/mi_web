@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePrestamoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePrestamoLabel_idPrestamo}" for="idPrestamo" />
+                    <h:inputText id="idPrestamo" value="#{prestamoController.selected.idPrestamo}" title="#{bundle.CreatePrestamoTitle_idPrestamo}" required="true" requiredMessage="#{bundle.CreatePrestamoRequiredMessage_idPrestamo}"/>
+                    <h:outputLabel value="#{bundle.CreatePrestamoLabel_fechap}" for="fechap" />
+                    <h:inputText id="fechap" value="#{prestamoController.selected.fechap}" title="#{bundle.CreatePrestamoTitle_fechap}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePrestamoLabel_horap}" for="horap" />
+                    <h:inputText id="horap" value="#{prestamoController.selected.horap}" title="#{bundle.CreatePrestamoTitle_horap}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePrestamoLabel_tipop}" for="tipop" />
+                    <h:inputText id="tipop" value="#{prestamoController.selected.tipop}" title="#{bundle.CreatePrestamoTitle_tipop}" />
+                    <h:outputLabel value="#{bundle.CreatePrestamoLabel_paginasp}" for="paginasp" />
+                    <h:inputText id="paginasp" value="#{prestamoController.selected.paginasp}" title="#{bundle.CreatePrestamoTitle_paginasp}" />
+                    <h:outputLabel value="#{bundle.CreatePrestamoLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{prestamoController.selected.idUsuario}" title="#{bundle.CreatePrestamoTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreatePrestamoRequiredMessage_idUsuario}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePrestamoLabel_idInventario}" for="idInventario" />
+                    <h:selectOneMenu id="idInventario" value="#{prestamoController.selected.idInventario}" title="#{bundle.CreatePrestamoTitle_idInventario}" required="true" requiredMessage="#{bundle.CreatePrestamoRequiredMessage_idInventario}">
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{prestamoController.create}" value="#{bundle.CreatePrestamoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{prestamoController.prepareList}" value="#{bundle.CreatePrestamoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePrestamoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

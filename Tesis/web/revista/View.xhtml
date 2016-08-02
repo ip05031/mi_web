@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRevistaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRevistaLabel_idRevista}"/>
+                    <h:outputText value="#{revistaController.selected.idRevista}" title="#{bundle.ViewRevistaTitle_idRevista}"/>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_titulor}"/>
+                    <h:outputText value="#{revistaController.selected.titulor}" title="#{bundle.ViewRevistaTitle_titulor}"/>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_fechapr}"/>
+                    <h:outputText value="#{revistaController.selected.fechapr}" title="#{bundle.ViewRevistaTitle_fechapr}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_issn}"/>
+                    <h:outputText value="#{revistaController.selected.issn}" title="#{bundle.ViewRevistaTitle_issn}"/>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_imagenpr}"/>
+                    <h:outputText value="#{revistaController.selected.imagenpr}" title="#{bundle.ViewRevistaTitle_imagenpr}"/>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_archivopr}"/>
+                    <h:outputText value="#{revistaController.selected.archivopr}" title="#{bundle.ViewRevistaTitle_archivopr}"/>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_descripcionr}"/>
+                    <h:outputText value="#{revistaController.selected.descripcionr}" title="#{bundle.ViewRevistaTitle_descripcionr}"/>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_fechaingresor}"/>
+                    <h:outputText value="#{revistaController.selected.fechaingresor}" title="#{bundle.ViewRevistaTitle_fechaingresor}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_paisr}"/>
+                    <h:outputText value="#{revistaController.selected.paisr}" title="#{bundle.ViewRevistaTitle_paisr}"/>
+                    <h:outputText value="#{bundle.ViewRevistaLabel_idDonacion}"/>
+                    <h:outputText value="#{revistaController.selected.idDonacion}" title="#{bundle.ViewRevistaTitle_idDonacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{revistaController.destroyAndView}" value="#{bundle.ViewRevistaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRevistaEditLink}"/>
+                <br />
+                <h:commandLink action="#{revistaController.prepareCreate}" value="#{bundle.ViewRevistaCreateLink}" />
+                <br />
+                <h:commandLink action="#{revistaController.prepareList}" value="#{bundle.ViewRevistaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRevistaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

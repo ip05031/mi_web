@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDonacionesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDonacionesLabel_idDonacion}" for="idDonacion" />
+                    <h:inputText id="idDonacion" value="#{donacionesController.selected.idDonacion}" title="#{bundle.CreateDonacionesTitle_idDonacion}" required="true" requiredMessage="#{bundle.CreateDonacionesRequiredMessage_idDonacion}"/>
+                    <h:outputLabel value="#{bundle.CreateDonacionesLabel_fechadonacion}" for="fechadonacion" />
+                    <h:inputText id="fechadonacion" value="#{donacionesController.selected.fechadonacion}" title="#{bundle.CreateDonacionesTitle_fechadonacion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDonacionesLabel_archivod}" for="archivod" />
+                    <h:inputText id="archivod" value="#{donacionesController.selected.archivod}" title="#{bundle.CreateDonacionesTitle_archivod}" />
+                    <h:outputLabel value="#{bundle.CreateDonacionesLabel_idDonante}" for="idDonante" />
+                    <h:selectOneMenu id="idDonante" value="#{donacionesController.selected.idDonante}" title="#{bundle.CreateDonacionesTitle_idDonante}" required="true" requiredMessage="#{bundle.CreateDonacionesRequiredMessage_idDonante}">
+                        <f:selectItems value="#{donateController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{donacionesController.create}" value="#{bundle.CreateDonacionesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{donacionesController.prepareList}" value="#{bundle.CreateDonacionesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDonacionesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

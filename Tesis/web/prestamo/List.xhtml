@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPrestamoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPrestamoEmpty}" rendered="#{prestamoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{prestamoController.items.rowCount > 0}">
+                    <h:outputText value="#{prestamoController.pagination.pageFirstItem + 1}..#{prestamoController.pagination.pageLastItem + 1}/#{prestamoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{prestamoController.previous}" value="#{bundle.Previous} #{prestamoController.pagination.pageSize}" rendered="#{prestamoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{prestamoController.next}" value="#{bundle.Next} #{prestamoController.pagination.pageSize}" rendered="#{prestamoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{prestamoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPrestamoTitle_idPrestamo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPrestamo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPrestamoTitle_fechap}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechap}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPrestamoTitle_horap}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horap}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPrestamoTitle_tipop}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipop}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPrestamoTitle_paginasp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paginasp}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPrestamoTitle_idUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPrestamoTitle_idInventario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idInventario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{prestamoController.prepareView}" value="#{bundle.ListPrestamoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{prestamoController.prepareEdit}" value="#{bundle.ListPrestamoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{prestamoController.destroy}" value="#{bundle.ListPrestamoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{prestamoController.prepareCreate}" value="#{bundle.ListPrestamoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPrestamoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
