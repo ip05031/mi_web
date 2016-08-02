@@ -129,7 +129,7 @@ public class TipoUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.TipoUsuario[ idTusuario=" + idTusuario + " ]";
+        return "" + nombretp+ "";
     }
     
 }
